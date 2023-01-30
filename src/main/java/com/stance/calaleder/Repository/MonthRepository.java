@@ -1,7 +1,6 @@
 package com.stance.calaleder.Repository;
 
-import com.stance.calaleder.Domain.Months;
-import com.stance.calaleder.Domain.Stance;
+import com.stance.calaleder.Domain.Monthuser;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,11 +8,11 @@ import java.util.Optional;
 
 @Repository
 public interface MonthRepository {
-    Months save(Months month);
-    Optional<Months> findByID(int id);
-    List<Months> findAll();
-    Optional<Months> findByNameEmail(String name, String email);
+    Monthuser save(Monthuser month);
+    Optional<Monthuser> findByID(int id);
+    List<Monthuser> findAll();
+    Optional<Monthuser> findByNameEmail(String name, String email);
 
-    void deleteMonth(Months month);
+    void deleteMonth(Monthuser month);
 
 }

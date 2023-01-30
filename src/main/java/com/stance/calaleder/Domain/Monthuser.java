@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Months {
+public class Monthuser {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int ID;

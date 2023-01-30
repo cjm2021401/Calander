@@ -1,12 +1,11 @@
 package com.stance.calaleder.Service;
 
-import com.stance.calaleder.Domain.MonthStance;
+import com.stance.calaleder.Domain.Monthstance;
 import com.stance.calaleder.Repository.JpaMonthStanceRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,18 +18,23 @@ public class MonthStanceService {
     @Autowired
     public MonthStanceService(JpaMonthStanceRepository jpaMonthStanceRepository){this.jpaMonthStanceRepository=jpaMonthStanceRepository;}
 
-    public String join(MonthStance monthStance) throws IllegalStateException{
+    public String join(Monthstance monthStance) throws IllegalStateException{
         jpaMonthStanceRepository.save(monthStance);
         return monthStance.getNAME();
     }
 
-    public List<MonthStance> getAllMonthStance(){
-        List<MonthStance> monthStanceList = jpaMonthStanceRepository.findAll();
-        return monthStanceList == null ? Collections.emptyList() : monthStanceList;
+    public List<Monthstance> getAllMonthStance(){
+        List<Monthstance> monthstanceList = jpaMonthStanceRepository.findAll();
+        return monthstanceList == null ? Collections.emptyList() : monthstanceList;
     }
 
-    public List<MonthStance> getALlMonthStanceName(String Name){
-        List<MonthStance> monthStanceList = jpaMonthStanceRepository.findByName(Name);
-        return monthStanceList == null ? Collections.emptyList() : monthStanceList;
+    public List<Monthstance> getALlMonthStanceName(String Name){
+        List<Monthstance> monthstanceList = jpaMonthStanceRepository.findByName(Name);
+        return monthstanceList == null ? Collections.emptyList() : monthstanceList;
+    }
+
+    public void deleteMonthStanceName(String Name, String Start, String End){
+        Monthstance monthstance = jpaMonthStanceRepository.getMonthStance(Name, Start, End);
+        jpaMonthStanceRepository.deleteMonthStance(monthstance);
     }
 }

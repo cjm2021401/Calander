@@ -1,7 +1,6 @@
 package com.stance.calaleder.Repository;
 
-import com.stance.calaleder.Domain.MonthStance;
-import com.stance.calaleder.Domain.Stance;
+import com.stance.calaleder.Domain.Monthstance;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,24 +16,33 @@ public class JpaMonthStanceRepository implements MonthStanceRepository{
     public JpaMonthStanceRepository (EntityManager em){this.em=em;}
 
     @Override
-    public MonthStance save(MonthStance monthStance) {
+    public Monthstance save(Monthstance monthStance) {
         em.persist(monthStance);
         return monthStance;
     }
     @Override
-    public List<MonthStance> findAll() {
-        return em.createQuery("select s from MonthStance s", MonthStance.class)
+    public List<Monthstance> findAll() {
+        return em.createQuery("select s from Monthstance s", Monthstance.class)
                 .getResultList();
     }
 
     @Override
-    public List<MonthStance> findByName(String Name){
-        return em.createQuery("select s from MonthStance s where s.NAME = :NAME", MonthStance.class)
+    public List<Monthstance> findByName(String Name){
+        return em.createQuery("select s from Monthstance s where s.NAME = :NAME", Monthstance.class)
                 .setParameter("NAME", Name).getResultList();
     }
 
     @Override
-    public void deleteMonthStance(MonthStance monthStance) {
+    public Monthstance getMonthStance(String Name, String Start, String End) {
+        return em.createQuery("select s from Monthstance s where s.NAME = :NAME AND s.START_TIME = :START_TIME AND s.END_TIME = :END_TIME", Monthstance.class)
+                .setParameter("NAME", Name)
+                .setParameter("START_TIME", Start)
+                .setParameter("END_TIME", End)
+                .getSingleResult();
+    }
+
+    @Override
+    public void deleteMonthStance(Monthstance monthStance) {
         em.remove(monthStance);
     }
 }

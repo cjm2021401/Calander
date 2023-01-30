@@ -1,7 +1,6 @@
 package com.stance.calaleder.Repository;
 
-import com.stance.calaleder.Domain.Months;
-import com.stance.calaleder.Domain.Stance;
+import com.stance.calaleder.Domain.Monthuser;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,26 +16,26 @@ public class JpaMonthRepository implements MonthRepository{
     public JpaMonthRepository(EntityManager em){this.em=em;}
 
     @Override
-    public Months save(Months month) {
+    public Monthuser save(Monthuser month) {
         em.persist(month);
         return month;
     }
 
     @Override
-    public Optional<Months> findByID(int id) {
-        Months stance=em.find(Months.class, id);
+    public Optional<Monthuser> findByID(int id) {
+        Monthuser stance=em.find(Monthuser.class, id);
         return Optional.ofNullable(stance);
     }
 
     @Override
-    public List<Months> findAll() {
-        return em.createQuery("select s from Months s", Months.class)
+    public List<Monthuser> findAll() {
+        return em.createQuery("select s from Monthuser s", Monthuser.class)
                 .getResultList();
     }
 
     @Override
-    public Optional<Months> findByNameEmail(String name, String email) {
-        Months result = em.createQuery("select m from Months m where m.NAME = :NAME AND m.EMAIL = :EMAIL", Months.class)
+    public Optional<Monthuser> findByNameEmail(String name, String email) {
+        Monthuser result = em.createQuery("select m from Monthuser m where m.NAME = :NAME AND m.EMAIL = :EMAIL", Monthuser.class)
                 .setParameter("NAME", name)
                 .setParameter("EMAIL", email)
                 .getSingleResult();
@@ -44,7 +43,7 @@ public class JpaMonthRepository implements MonthRepository{
     }
 
     @Override
-    public void deleteMonth(Months month) {
+    public void deleteMonth(Monthuser month) {
         em.remove(month);
     }
 
