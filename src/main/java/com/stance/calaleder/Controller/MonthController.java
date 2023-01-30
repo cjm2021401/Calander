@@ -39,7 +39,7 @@ public class MonthController {
         String email=makeEmail(authentication);
         model.addAttribute("name", name);
         model.addAttribute("email", email);
-        if(name.equals("최정민") || name.equals("최슬기")){
+        if(name.equals("최정민") || name.equals("조예은")){
             model.addAttribute("rank","admin");
         }else{
             model.addAttribute("rank", "etc");
@@ -59,7 +59,7 @@ public class MonthController {
             model.addAttribute("eventList", eventList);
             model.addAttribute("name", name);
             model.addAttribute("email", email);
-            if(name.equals("최정민") || name.equals("최슬기")){
+            if(name.equals("최정민") || name.equals("조예은")){
                 model.addAttribute("rank","admin");
             }else{
                 model.addAttribute("rank", "etc");
@@ -91,12 +91,12 @@ public class MonthController {
         String email=makeEmail(authentication);
         model.addAttribute("name", name);
         model.addAttribute("email", email);
-        if(name.equals("최정민") || name.equals("최슬기")){
+        if(name.equals("최정민") || name.equals("조예은")){
             model.addAttribute("rank","admin");
         }else{
             model.addAttribute("rank", "etc");
         }
-        if(monthService.checkMonthNameEvent(name, email)  || name.equals("최슬기")){
+        if(monthService.checkMonthNameEvent(name, email)){
             //Monthuser monthuser = monthService.getMonthNameEvent(name, email);
             List<Monthstance> monthstanceList =monthStanceService.getAllMonthStance();
             List<Event> eventList=new ArrayList<>();
@@ -111,7 +111,7 @@ public class MonthController {
             model.addAttribute("eventList", eventList);
             model.addAttribute("name", name);
             model.addAttribute("email", email);
-            if(name.equals("최정민") || name.equals("최슬기")){
+            if(name.equals("최정민") || name.equals("조예은")){
                 model.addAttribute("rank","admin");
             }else{
                 model.addAttribute("rank", "etc");
@@ -143,12 +143,12 @@ public class MonthController {
         String email=makeEmail(authentication);
         model.addAttribute("name", name);
         model.addAttribute("email", email);
-        if(name.equals("최정민") || name.equals("최슬기")){
+        if(name.equals("최정민") || name.equals("조예은")){
             model.addAttribute("rank","admin");
         }else{
             model.addAttribute("rank", "etc");
         }
-        if(monthService.checkMonthNameEvent(name, email)|| name.equals("최슬기")) {
+        if(monthService.checkMonthNameEvent(name, email)|| name.equals("조예은")) {
             logger.info(monthEvent.toString());
             Monthstance monthStance = new Monthstance();
             monthStance.setNAME(name);
@@ -177,12 +177,11 @@ public class MonthController {
     @PostMapping("/deletemonthevent")
     public String deleteMonthEvent(Authentication authentication, MonthEvent1 monthEvent, Model model) {
         logger.info(monthEvent.getStart1());
-        logger.info("하하하");
         String name= authentication.getName();
         String email=makeEmail(authentication);
         model.addAttribute("name", name);
         model.addAttribute("email", email);
-        if(name.equals("최정민") || name.equals("최슬기")){
+        if(name.equals("최정민") || name.equals("조예은")){
             model.addAttribute("rank","admin");
         }else{
             model.addAttribute("rank", "etc");

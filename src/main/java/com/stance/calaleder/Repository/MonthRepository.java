@@ -11,7 +11,8 @@ public interface MonthRepository {
     Monthuser save(Monthuser month);
     Optional<Monthuser> findByID(int id);
     List<Monthuser> findAll();
-    Optional<Monthuser> findByNameEmail(String name, String email);
+    Optional<Monthuser> findByNameEmail(String name);
+
 
     void deleteMonth(Monthuser month);
 

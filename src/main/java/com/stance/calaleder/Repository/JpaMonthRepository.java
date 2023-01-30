@@ -34,10 +34,9 @@ public class JpaMonthRepository implements MonthRepository{
     }
 
     @Override
-    public Optional<Monthuser> findByNameEmail(String name, String email) {
-        Monthuser result = em.createQuery("select m from Monthuser m where m.NAME = :NAME AND m.EMAIL = :EMAIL", Monthuser.class)
+    public Optional<Monthuser> findByNameEmail(String name) {
+        Monthuser result = em.createQuery("select m from Monthuser m where m.NAME = :NAME ", Monthuser.class)
                 .setParameter("NAME", name)
-                .setParameter("EMAIL", email)
                 .getSingleResult();
         return Optional.ofNullable(result);
     }

@@ -31,7 +31,7 @@ public class MonthService {
     }
 
     public void updateStance(Monthuser month){
-        jpaMonthRepository.findByNameEmail(month.getNAME(), month.getEMAIL()).ifPresent(m->{
+        jpaMonthRepository.findByNameEmail(month.getNAME()).ifPresent(m->{
             m.setSTART_TIME(month.getSTART_TIME());
             m.setEND_TIME(month.getEND_TIME());
         });
@@ -41,7 +41,7 @@ public class MonthService {
         List<Monthuser> monthList = jpaMonthRepository.findAll();
         Boolean check = false;
         for (Monthuser month : monthList){
-            if (month.getNAME().equals(Name) && month.getEMAIL().equals(Email)){
+            if (month.getNAME().equals(Name)){
                 check=true;
                 break;
             }
@@ -51,7 +51,7 @@ public class MonthService {
     }
 
     public Monthuser getMonthNameEvent(String Name, String Email){
-        Optional<Monthuser> monthuser=jpaMonthRepository.findByNameEmail(Name, Email);
+        Optional<Monthuser> monthuser=jpaMonthRepository.findByNameEmail(Name);
         if (monthuser.isPresent()){
             return  monthuser.get();
         }
@@ -60,5 +60,9 @@ public class MonthService {
             monthuser1.setNAME("none");
             return monthuser1;
         }
+    }
+
+    public void deleteMonth(int id){
+        jpaMonthRepository.deleteMonth(jpaMonthRepository.findByID(id).get());
     }
 }

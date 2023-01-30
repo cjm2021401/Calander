@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>StanceDanceStudio</title>
+    <title>ADMIN PAGE</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width", intital-scale="1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -51,47 +51,33 @@
         <div class="row">
             <div class="col-1"></div>
             <div class="col-10">
-                <img src="image/stance.png">
-                <p class="text-start" style="margin-bottom: 0px;"></p>
-                <p class="text-start" style="padding-left: 25px;">계좌 : !@@#~!@#!@#@#!@#@!#!@#(조예은)</p>
-                <hr class="my-4" style="background-color: black">
-                <form method="post" th:action="@{/request}" enctype="multipart/form-data">
+                <h2>월대관 인원 추가</h2>
+                <form method="post" th:action="@{/addmonthuser}" enctype="multipart/form-data">
                     <div class="form-group">
                         <div>
-                            <div class="input-group mb-3">
-                                <input class="form-check" name="IS_CHECK" type="checkbox" id="IS_CHECK" required>
-                                <label class="form-check-label" for="IS_CHECK" style="margin-left: 10px">
-                                    입금 완료시, 예약이 완료가 됩니다.
-                                </label>
-                            </div>
                             <label for="NAME" class="form-label">NAME</label>
-                            <input type="text" id="NAME" name="NAME" class="form-control"  placeholder="입금자명을 적어주세요.(필수)" required>
+                            <input type="text" id="NAME" name="NAME" class="form-control"  placeholder="이름을 적어주세요.(필수)" required>
                             <div id="CUSTOMER_TEXT" class="form-text" style="margin-bottom: 10px">
-                                입금자 이름을 적어주세요.
+                               이름을 적어주세요.
                             </div>
                             <label for="PHONE_NUMBER" class="form-label">PHONE_NUMBER</label>
                             <input type="text" id="PHONE_NUMBER" name="PHONE_NUMBER" class="form-control"  placeholder="핸드폰 번호를 적어주세요. (ex 01012345678)(필수)" required>
                             <div id="PROJECT_NAME_TEXT" class="form-text" style="margin-bottom: 10px">
-                                대관 승인과 스튜디오 정보에 대해 안내 받을 번호를 입력해주세요.
+                                인원의 핸드폰 번호를 적어주세요.
                             </div>
 
-                            <label for="COUNT" class="form-label">인원</label>
-                            <input type="number" id="COUNT" name="COUNT" class="form-control" value="0" required>
-                            <div id="APM_CORE_COUNT_TEXT" class="form-text" style="margin-bottom: 10px">
-                                사용하시는 인원을 입력해주세요.
-                            </div>
 
                             <label for="START_TIME" class="form-label">START_TIME</label>
-                            <input type="text" id="START_TIME" name=" START_TIME"  class="form-control" th:value="${start}" readonly>
+                            <input type="date" id="START_TIME" name=" START_TIME"  class="form-control" placeholder="시작 날짜를 적어주세요." required>
                             <div id="START_TIME_TEXT" class="form-text" style="margin-bottom: 10px">
-                                대관 시작 시간
+                                월대관 시작 기간
                             </div>
 
 
                             <label for="END_TIME" class="form-label">END_DATE</label>
-                            <input type="text" id="END_TIME" name=" END_TIME"  class="form-control" th:value="${end}"readonly>
+                            <input type="date" id="END_TIME" name=" END_TIME"  class="form-control" placeholder="종료 날짜를 적어주세요." required>
                             <div id="END_TIME_TEXT" class="form-text" style="margin-bottom: 10px">
-                                대관 종료 시간
+                                월대관 종료 기간
                             </div>
 
 
@@ -104,22 +90,7 @@
         </div>
     </div>
 
-    <input th:value="${message}" type="text" id="valid" hidden="true"/>
-    <input th:value="${check}" type="text" id="check" hidden="true"/>
 </section>
 </body>
-<script >
 
-
-    $(document).ready(function () {
-        if($("#valid").val() == "canNotcreate"){
-            alert("라이센스가 정상적으로 생성되지 않았습니다.\n입력하신 값이 유효한 값인지 확인해주세요");
-        }
-    });
-    $(document).ready(function () {
-        if($("#check").val() != ""){
-            alert($("#check").val());
-        }
-    });
-</script>:
 </html>

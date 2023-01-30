@@ -91,12 +91,6 @@
 
 
 
-
-
-
-
-
-
     } else {
     var calendar = new FullCalendar.Calendar(calendarEl, {
       headerToolbar: {
@@ -156,7 +150,10 @@
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link active" aria-current="page" href="/month">월대관</a>
+                    <a class="nav-link active" aria-current="page" href="/month">월대관 연습 신청</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link active" aria-current="page" href="/monthview">월대관 연습 신청 현황</a>
                 </li>
             </ul>
         </div>
@@ -189,12 +186,12 @@
             <hr class="my-2" style="background-color: white">
             <form method="get" th:action="@{/monthview}">
                 <div class="d-grid gap-2" style="text-align: center">
-                    <button type="submit" class="btn btn-outline-secondary" name="s3">월대관 엽습 신청 현황</button>
+                    <button type="submit" class="btn btn-outline-secondary" name="s3">월대관 연습 신청 현황</button>
                 </div>
             </form>
             <hr class="my-2" style="background-color: white">
             <th:block th:if="${rank=='admin'}">
-                <form method="post" th:action="@{/admin}">
+                <form method="post" th:action="@{/adminPage}">
                     <div class="d-grid gap-2" style="text-align: center">
                         <button type="submit" class="btn btn-outline-secondary" name="s3">ADMIN PAGE</button>
                     </div>

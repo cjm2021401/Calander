@@ -64,7 +64,17 @@ public class StanceController {
 
 
     @PostMapping("/addevent")
-    public String Addevent(Event event, Model model){
+    public String Addevent(Authentication authentication, Event event, Model model){
+        String name=authentication.getName();
+        String email=makeEmail(authentication);
+        model.addAttribute("name", name);
+        model.addAttribute("email", email);
+        if(name.equals("최정민") || name.equals("조예은")){
+            logger.info("ㅇㅇㅇㅇ");
+            model.addAttribute("rank","admin");
+        }else{
+            model.addAttribute("rank", "etc");
+        }
         String start=event.getStart().substring(0,19);
         String end= event.getEnd().substring(0,19);
         String [] start_arr=start.split("T");
@@ -82,11 +92,11 @@ public class StanceController {
         try{
             logger.info(stance.getNAME());
             stanceService.join(stance);
-            model.addAttribute("message", "대관 신청이 완료되었습니다.");
+            model.addAttribute("message", "대관 신청이 완료되었습니다. \n 입금완료시 대관이 확정됩니다.");
         }catch (IllegalStateException e){
             model.addAttribute("message", e.getMessage());
         }catch (Exception e){
-            model.addAttribute("message", "대관 신청이 실패하였습니다.");
+            model.addAttribute("message", "대관 신청에 실패하였습니다.");
         } finally{
             List<Stance> stanceList=stanceService.getAllStanceList();
             List<Event> eventList=new ArrayList<>();
@@ -158,24 +168,7 @@ public class StanceController {
 
     }
 
-    @PostMapping("/admin")
-    public String getAdmin(Authentication authentication, Model model){
-        String name=authentication.getName();
-        if(name.equals("최정민")) {
-            List<Stance> stanceList = stanceService.getAllStanceList();
-            List<Stance> stanceNoaccessList = new ArrayList<>();
-            for (Stance stance : stanceList) {
-                logger.info(stance.getADMIN().toString());
-                if (!stance.getADMIN()) {
-                    stanceNoaccessList.add(stance);
-                }
-            }
-            logger.info(stanceNoaccessList.toString());
-            model.addAttribute("LISTV1", stanceNoaccessList);
-            return "admin";
-        }
-        return "home";
-    }
+
     public String makeEmail(Authentication authentication){
         String principal =authentication.getPrincipal().toString();
         int principalEmailIndex = principal.indexOf("email=");
